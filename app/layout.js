@@ -21,11 +21,11 @@ export const metadata = {
     title: "Khaleel Alhaji | Front End Engineer",
     description:
       "Front End Engineer crafting accessible, pixel-perfect digital experiences",
-    url: "https://khaleelalhaji3.vercel.app",
+    url: "https://khaleelalhaji.vercel.app",
     siteName: "Khaleel Alhaji Portfolio",
     images: [
       {
-        url: "https://khaleelalhaji3.vercel.app/og-image.png", // Full absolute URL
+        url: "https://khaleelalhaji.vercel.app/og-image.png", // Full absolute URL
         width: 1200,
         height: 630,
       },
@@ -33,7 +33,7 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-  metadataBase: new URL("https://khaleelalhaji3.vercel.app"),
+  metadataBase: new URL("https://khaleelalhaji.vercel.app"),
   alternates: {
     canonical: "/",
   },
