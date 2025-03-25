@@ -25,7 +25,7 @@ export default function Page() {
         variants={fadeInUp}
         custom={1}
       >
-        Let's connect
+        Let&apos;s connect
       </motion.p>
 
       <motion.div
@@ -34,7 +34,7 @@ export default function Page() {
         custom={2}
       >
         <p className="text-[#94A3B8] tracking-tight text-base">
-          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
         </p>
       </motion.div>
 

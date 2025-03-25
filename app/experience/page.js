@@ -34,7 +34,7 @@ export default function Page() {
         custom={2}
       >
         <p className="text-[#94A3B8] tracking-tight text-base">
-          A timeline of my career and education showcasing growth, achievements, and the skills I've developed along the way.
+          A timeline of my career and education showcasing growth, achievements, and the skills I&apos;ve developed along the way.
         </p>
       </motion.div>
 
