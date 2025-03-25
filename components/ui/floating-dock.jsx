@@ -6,18 +6,26 @@
 "use client"
 import { cn } from "@/lib/utils";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export const FloatingDock = ({
   items,
   desktopClassName,
   mobileClassName
 }) => {
+  const pathname = usePathname();
+
+  const activeItems = items.map(item => ({
+    ...item,
+    isActive: pathname === item.href
+  }));
+
   return (<>
-    <FloatingDockDesktop items={items} className={desktopClassName} />
-    <FloatingDockMobile items={items} className={mobileClassName} />
+    <FloatingDockDesktop items={activeItems} className={desktopClassName} />
+    <FloatingDockMobile items={activeItems} className={mobileClassName} />
   </>);
 };
 
@@ -52,7 +60,10 @@ const FloatingDockMobile = ({
                 <Link
                   href={item.href}
                   key={item.title}
-                  className="h-10 w-10 rounded-full bg-neutral-900 flex items-center justify-center">
+                  className={cn(
+                    "h-10 w-10 rounded-full bg-neutral-900 flex items-center justify-center",
+                    item.isActive && "ring-2 ring-blue-500"
+                  )}>
                   <div className="h-4 w-4">{item.icon}</div>
                 </Link>
               </motion.div>
@@ -79,11 +90,15 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-neutral-900 px-4 pb-3",
+        "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-neutral-900 px-4 pb-3",
         className
       )}>
       {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        <IconContainer 
+          mouseX={mouseX} 
+          key={item.title} 
+          {...item} 
+        />
       ))}
     </motion.div>)
   );
@@ -93,7 +108,8 @@ function IconContainer({
   mouseX,
   title,
   icon,
-  href
+  href,
+  isActive
 }) {
   let ref = useRef(null);
 
@@ -140,7 +156,10 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-full bg-neutral-800 flex items-center justify-center relative">
+        className={cn(
+          "aspect-square rounded-full bg-neutral-800 flex items-center justify-center relative",
+          isActive && "ring-2 ring-blue-500"
+        )}>
         <AnimatePresence>
           {hovered && (
             <motion.div
